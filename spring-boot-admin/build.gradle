@@ -1,0 +1,7 @@
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'de.codecentric:spring-boot-admin-starter-server:2.0.1'
+    compile 'org.springframework.retry:spring-retry'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

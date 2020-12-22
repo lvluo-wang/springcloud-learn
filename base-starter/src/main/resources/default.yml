@@ -1,0 +1,14 @@
+spring:
+  main.allow-bean-definition-overriding: true
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    service-url:
+      defaultZone: http://localhost:7000/eureka/
+
+logging:
+  level:
+    root: INFO

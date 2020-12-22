@@ -1,0 +1,22 @@
+spring:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:18080
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler: 1.0
+  zipkin:
+    base-url: http://localhost:9411/
+
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

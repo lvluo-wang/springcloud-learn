@@ -1,0 +1,97 @@
+
+buildscript {
+    ext {
+        springBootVersion = '2.2.2.RELEASE'
+        springBootManagementVersion = '1.0.8.RELEASE'
+        springCloudVersion = 'Hoxton.SR1'
+    }
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:${springBootManagementVersion}")
+        classpath ( "com.bmuschko:gradle-cargo-plugin:2.6.1")
+
+    }
+}
+
+allprojects {
+    group 'com.cloud'
+    version '1.0-SNAPSHOT'
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+    apply plugin: 'idea'
+    apply plugin: 'war'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    jar {
+        enabled = true
+    }
+//    bootJar {
+//        classifier = 'boot'
+//    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+    dependencies {
+        compile(
+                'org.springframework.cloud:spring-cloud-starter',
+                'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
+                'org.springframework.boot:spring-boot-starter-actuator',
+//                'org.springframework.boot:spring-boot-autoconfigure',
+                'org.springframework.boot:spring-boot-starter-webflux',
+                'org.springframework.boot:spring-boot-starter-aop',
+//                'org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE',
+                'org.springframework.cloud:spring-cloud-starter-hystrix:1.4.7.RELEASE',
+                'net.logstash.logback:logstash-logback-encoder:6.3',
+//                'ch.qos.logback:logback-core:1.2.3',
+//                'ch.qos.logback:logback-classic:1.2.3',
+
+                'org.projectlombok:lombok:1.18.10',
+
+//              'org.springframework.retry:spring-retry',
+//              'org.springframework.boot:spring-boot-starter-web',
+//              'org.springframework.boot:spring-boot-starter-amqp',
+//              'org.springframework.boot:spring-boot-starter-tomcat',
+//              'org.springframework.cloud:spring-cloud-starter-security',
+//              'org.springframework.cloud:spring-cloud-starter-config',
+                'com.google.guava:guava:23.0',
+                "io.springfox:springfox-swagger2:2.9.2",
+                "io.springfox:springfox-swagger-ui:2.9.2"
+        )
+    }
+
+    dependencies {
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompile(
+                "org.springframework.boot:spring-boot-starter-test",
+                "org.springframework:spring-test",
+                "junit:junit:4.12"
+        )
+        providedCompile(
+                'org.projectlombok:lombok:1.18.10'
+        )
+    }
+    dependencyManagement {
+        imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+        imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" }
+    }
+
+
+}

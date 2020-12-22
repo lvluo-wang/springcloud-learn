@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+log.BasicLogsAutoConfiguration,\
+i18n.BasicI18nAutoConfiguration,\
+web.BasicWebAutoConfiguration
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+env.BasicDefaultEnvironmentPostProcessor

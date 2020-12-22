@@ -1,0 +1,9 @@
+rootProject.name = 'springcloud-learn'
+include 'eureka-server'
+include 'consumer'
+include 'gateway'
+include 'hystrix-dashboard'
+include 'producer'
+include 'spring-boot-admin'
+include 'base-starter'
+
